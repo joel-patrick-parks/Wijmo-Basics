@@ -1,0 +1,163 @@
+<div class="container">
+    <div class="custom-panel">
+        <div class="row">
+            <div class="col-12">
+                <h1>FlexChart</h1>
+                <p>FlexChart is a collection of Wijmo chart components, with over 80 different chart types to choose from. There are three different groups of charts: standard charts, financial charts, and special charts. Special charts are more unique and serve different purposes that the other chart categories.</p>
+                <p>FlexChart, like all of Wijmo's components, uses the CollectionView to manage the data provided to the datagrid. This allows devs extensive control over how the data is organized and presented by FlexGrid. It can also allow controls to be collected to one another by having them use the same CollectionView.</p>
+                <p>This page will outline some of FlexChart's key charts and features.</p>
+            </div>
+        </div>
+        <!-- Section Break -->
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h2>Column Chart</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <p>In order to use FlexChart, we'll need to import the <i><b>WjChartModule</b></i> to the <i><b>app.module.ts</b></i> file. Like FlexGrid, we'll set the <i><b>itemsSource</b></i> property. We'll also set the chart header by setting the <i><b>header</b></i> property, the <i><b>bindingX</b></i> property so the chart knows what value to bind to, and the <i><b>palette</b></i> property, which allows us to define the colors used by the chart to display values.</p>
+                <p>There's also some more markup needed to finish filling out the chart component. The first is the <i><b>wj-flex-chart-legend</b></i>; the <i><b>position</b></i> property is set to <i><b>Bottom</b></i> so that the legend displays at the bottom of the chart. The second is the three series to display. This is done using the <i><b>wj-flex-chart-series</b></i> markup, which needs its <i><b>name</b></i> and <i><b>binding</b></i> properties set to tell the chart what to display.</p>
+            </div>
+            <div class="col-8">
+                <!-- Chart Control -->
+                <wj-flex-chart [header]="'Sales by Country'" [bindingX]="'country'" [selectionMode]="'Point'" [itemsSource]="collectionView" [palette]="palette">
+                    <wj-flex-chart-legend [position]="'Bottom'"></wj-flex-chart-legend>
+                    <wj-flex-chart-series [name]="'2018'" [binding]="'2018'">
+                    </wj-flex-chart-series>
+                    <wj-flex-chart-series [name]="'2019'" [binding]="'2019'">
+                    </wj-flex-chart-series>
+                    <wj-flex-chart-series [name]="'2020'" [binding]="'2020'">
+                    </wj-flex-chart-series>
+                </wj-flex-chart>
+            </div>
+        </div>
+        <!-- Section Break -->
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h2>Line Chart</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <!-- Chart Control -->
+                <wj-flex-chart [itemsSource]="collectionViewSales" [bindingX]="'year'" [chartType]="'Line'" [header]="'Sales and Expenses'" [palette]="palette">
+                    <wj-flex-chart-legend [position]="'Bottom'"></wj-flex-chart-legend>
+                    <wj-flex-chart-axis [wjProperty]="'axisY'" [title]="'Sales'"></wj-flex-chart-axis>
+                    <wj-flex-chart-series [binding]="'sales'" [name]="'Sales'"></wj-flex-chart-series>
+                    <wj-flex-chart-series [binding]="'expenses'" [name]="'Expenses'"></wj-flex-chart-series>
+                </wj-flex-chart>
+            </div>
+            <div class="col-4">
+                <p>The next most common chart type is the LineChart. Setting this up is similar to how we set up the ColumnChart. Inside of the chart markup, <i><b>chartType</b></i> property is set to <i><b>Line</b></i> so the control knows that we want to display the data as a line chart.</p>
+                <p>The other thing that we'll implement in this example is the <i><b>wj-flex-chart-axis</b></i> markup to set the chart's axis. Its assigned to the Y-axis by setting the <i><b>wjProperty</b></i> to <i><b>axisY</b></i>, and we the title of the axis is set by assigning a value to the <i><b>title</b></i> property.</p>
+            </div>
+        </div>
+        <!-- Section Break -->
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h2>Scatter Chart</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <p>The final chart we'll cover is the ScatterChart. It displays data based on both an X and Y value to place a bubble on the chart in relation to the values provided. Like the LineChart, in the markup the chart itself is defined, as well as the legend, axis, and three series. The difference is that we will not be defining the <i><b>itemsSource</b></i> property of the chart; instead, we define it for each of the three series.</p>
+                <p>With a ScatterChart, each of the series need to have their own <i><b>itemsSource</b></i>. The reason for this is because of the way the data is formatted. In the previous examples, the X-axis was bound to predefined "Year" property values. With the ScatterChart, there are no predefined values to base the chart off of. So instead, we can bind both our X and Y-axis values directly in the series markup.</p>
+            </div>
+            <div class="col-8">
+                <!-- Chart Control -->
+                <wj-flex-chart [chartType]="'Scatter'" [bindingX]="'sale'" [header]="'Sale to Expense per Transaction'" [palette]="palette">
+                    <wj-flex-chart-legend [position]="'Bottom'"></wj-flex-chart-legend>
+                    <wj-flex-chart-axis wjProperty="axisY" [axisLine]="true"></wj-flex-chart-axis>
+                    <wj-flex-chart-series [name]="'US'" [itemsSource]="usSales" [bindingX]="'sale'" [binding]="'expense'"></wj-flex-chart-series>
+                    <wj-flex-chart-series [name]="'Germany'" [itemsSource]="germanySales" [bindingX]="'sale'" [binding]="'expense'"></wj-flex-chart-series>
+                    <wj-flex-chart-series [name]="'Japan'" [itemsSource]="japanSales" [bindingX]="'sale'" [binding]="'expense'"></wj-flex-chart-series>
+                </wj-flex-chart>
+            </div>
+        </div>
+        <!-- Section Break -->
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h2>Custom Tooltips</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <!-- Chart Control -->
+                <wj-flex-chart [itemsSource]="collectionViewSales" [bindingX]="'year'" [header]="'Sales and Expenses'" [palette]="palette" [tooltipContent]="tooltipContent">
+                    <wj-flex-chart-legend [position]="'Bottom'"></wj-flex-chart-legend>
+                    <wj-flex-chart-axis [wjProperty]="'axisY'" [title]="'Sales'"></wj-flex-chart-axis>
+                    <wj-flex-chart-series [binding]="'sales'" [name]="'Sales'"></wj-flex-chart-series>
+                    <wj-flex-chart-series [binding]="'expenses'" [name]="'Expenses'"></wj-flex-chart-series>
+                </wj-flex-chart>
+            </div>
+            <div class="col-4">
+                <p>In order to use FlexChart, we'll need to import the <i><b>WjChartModule</b></i> to the <i><b>app.module.ts</b></i> file. Like FlexGrid, we'll set the <i><b>itemsSource</b></i> property. We'll also set the chart header by setting the <i><b>header</b></i> property, the <i><b>bindingX</b></i> property so the chart knows what value to bind to, and the <i><b>palette</b></i> property, which allows us to define the colors used by the chart to display values.</p>
+                <p>There's also some more markup needed to finish filling out the chart component. The first is the <i><b>wj-flex-chart-legend</b></i>; the <i><b>position</b></i> property is set to <i><b>Bottom</b></i> so that the legend displays at the bottom of the chart. The second is the three series to display. This is done using the <i><b>wj-flex-chart-series</b></i> markup, which needs its <i><b>name</b></i> and <i><b>binding</b></i> properties set to tell the chart what to display.</p>
+            </div>
+        </div>
+        <!-- Section Break -->
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h2>Multiple Axes</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <p>FlexChart allows you to define multiple axes. This is useful when you want to display series of data that are measured by different values (for example, the hundreds vs. the hundred thousands). This is done by using a FlexChartSeries as, essentially, another FlexChart.</p>
+                <p>To set a second axis, we need to pick one of the series to base the axis on. We'll set the <i><b>chartType</b></i> of the series; in this case, we'll set it as <i><b>LineSymbols</b></i>. Then, within that series, we define the markup for another <i><b>wj-flex-chart-axis</b></i>. The only new thing we do with the axis is set the <i><b>position</b></i> property to <i><b>Right</b></i>.</p>
+            </div>
+            <div class="col-8">
+                <!-- Chart Control -->
+                <wj-flex-chart [itemsSource]="collectionViewSales" [bindingX]="'year'" [header]="'Sales and Expenses'" [palette]="palette">
+                    <wj-flex-chart-legend [position]="'Bottom'"></wj-flex-chart-legend>
+                    <wj-flex-chart-axis [wjProperty]="'axisY'" [title]="'Sales'"></wj-flex-chart-axis>
+                    <wj-flex-chart-series [binding]="'sales'" [name]="'Sales'"></wj-flex-chart-series>
+                    <wj-flex-chart-series [binding]="'expenses'" [name]="'Expenses'"></wj-flex-chart-series>
+                    <!-- Series w/ Secondary Axis -->
+                    <wj-flex-chart-series [binding]="'orders'" [name]="'Orders'" [chartType]="'LineSymbols'">
+                        <wj-flex-chart-axis [wjProperty]="'axisY'" [position]="'Right'" [title]="'Number of Orders'"></wj-flex-chart-axis>
+                    </wj-flex-chart-series>
+                </wj-flex-chart>
+            </div>
+        </div>
+        <!-- Section Break -->
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h2>Series Picker</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8" style="position: relative;">
+                <!-- Chart Control -->
+                <wj-flex-chart #seriesChart [header]="'Sales by Country'" [bindingX]="'country'" [selectionMode]="'Point'" [itemsSource]="collectionView" [palette]="palette">
+                    <wj-flex-chart-legend [position]="'Bottom'"></wj-flex-chart-legend>
+                    <wj-flex-chart-series [name]="'2015'" [binding]="'2015'"></wj-flex-chart-series>
+                    <wj-flex-chart-series [name]="'2016'" [binding]="'2016'"></wj-flex-chart-series>
+                    <wj-flex-chart-series [name]="'2017'" [binding]="'2017'"></wj-flex-chart-series>
+                    <wj-flex-chart-series [name]="'2018'" [binding]="'2018'"></wj-flex-chart-series>
+                    <wj-flex-chart-series [name]="'2019'" [binding]="'2019'"></wj-flex-chart-series>
+                    <wj-flex-chart-series [name]="'2020'" [binding]="'2020'"></wj-flex-chart-series>
+                </wj-flex-chart>
+                <!-- Icon used to display series picker -->
+                <div class="seriesPicker" (click)="pickerClick($event)">
+                    <i class="bi bi-gear"></i>
+                </div>
+                <div style="display:none">
+                    <!-- Series Picker -->
+                    <wj-list-box #seriesPicker [itemsSource]="seriesChart.series" [checkedMemberPath]="'visible'" displayMemberPath="name" (lostFocus)="lostFocus()" (checkedItemsChanged)="checkedItemsChanged(seriesPicker)"></wj-list-box>
+                </div>
+            </div>
+            <div class="col-4">
+                <p>There will be times where you will want to choose which series the chart is displaying; this is usually due to having many different series that are being displayed. We can allow users to select which series that they want to view by implementing a series picker.</p>
+                <p>To create the series picker, we're going to use a Wijmo <i><b>ListBox</b></i>. We'll also use bootstrap icons to add an icon that users can click to display the series picker. For the <i><b>itemsSource</b></i>, we use the <i><b>series</b></i> array of the FlexChart that the picker is going to be tied to. We also add methods tied to the <i><b>lostFocus</b></i> and <i><b>checkedItemsChanged</b></i> events of the control so that we can update the chart in real-time.</p>
+            </div>
+        </div>
+    </div>
+</div>

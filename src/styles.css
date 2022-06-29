@@ -1,0 +1,163 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@grapecity/wijmo.styles/themes/wijmo.theme.material.css';
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
+/* Core Styles */
+body {
+    margin: 0px;
+    background: hsl(0, 0%, 40%);
+    box-sizing: border-box;
+}
+
+.container {
+    margin-top: 80px;
+    margin-bottom: 20px;
+    color: hsl(0, 0%, 80%);
+}
+
+.custom-panel {
+    border: 1px solid hsl(0, 0%, 13%);
+    border-radius: 10px;
+    padding: 20px;
+    background: hsl(0, 0%, 13%);
+}
+
+.wj-control {
+    background: hsl(0, 0%, 50%);
+}
+
+
+
+/* Wijmo FlexGrid Styles */
+.wj-cell {
+    color: hsl(0, 0%, 80%);
+    background: hsl(0, 0%, 27%);
+}
+
+.wj-cell.wj-header {
+    color: hsl(0, 0%, 80%);
+    background: hsl(0, 0%, 40%);
+}
+
+.wj-cell.wj-alt {
+    background: hsl(0, 0%, 33%);
+}
+
+.wj-cell.wj-state-active.wj-state-selected {
+    background: hsl(0, 0%, 50%);
+}
+
+.wj-cells .wj-cell.wj-state-multi-selected {
+    background: hsl(0, 0%, 55%);
+}
+
+
+
+/* Wijmo FlexGridFilter Styles */
+.wj-dropdown-panel {
+    color: hsl(0, 0%, 80%);
+    background: hsl(0, 0%, 33%);
+}
+
+.wj-control .wj-btn {
+    color: hsl(0, 0%, 80%);
+    background: hsl(0, 0%, 40%);
+}
+
+.wj-control .wj-btn:hover {
+    background: hsl(0, 0%, 45%);
+}
+
+
+
+/* Wijmo Pager Styles */
+.wj-pager {
+    float: right;
+}
+
+.wj-pager .wj-input-group .wj-form-control {
+    color: hsl(0, 0%, 80%);
+    background: hsl(0, 0%, 33%);
+}
+
+.wj-control .wj-btn-group > .wj-btn.wj-btn-default:enabled, .wj-viewer .wj-control .wj-btn-group > .wj-btn-default.wj-applybutton:enabled, .wj-control .wj-input-group-btn > .wj-btn.wj-btn-default:enabled, .wj-viewer .wj-control .wj-input-group-btn > .wj-btn-default.wj-applybutton:enabled {
+    color: hsl(0, 0%, 80%);
+    background: hsl(0, 0%, 27%);
+}
+
+.wj-control .wj-input-group .wj-input-group-btn:first-child:not(:last-child) > .wj-btn, .wj-viewer .wj-control .wj-input-group .wj-input-group-btn:first-child:not(:last-child) > .wj-applybutton, .wj-pager .wj-input-group .wj-input-group-btn > .wj-btn, .wj-pager .wj-input-group .wj-viewer .wj-control .wj-input-group-btn > .wj-applybutton, .wj-viewer .wj-control .wj-pager .wj-input-group .wj-input-group-btn > .wj-applybutton {
+    color: hsl(0, 0%, 80%);
+    background: hsl(0, 0%, 40%);
+}
+
+
+
+/* Wijmo Custom Cells Styles */
+.cell-editor {
+    position: absolute; 
+    left: 0px;
+    width: 100%; 
+    border-radius: 0px;
+    margin: -4px 0 -3px 0;
+}
+
+.wj-control .wj-input-group .wj-form-control {
+    color: hsl(0, 0%, 80%);
+    background: hsl(0, 0%, 33%);
+}
+
+.wj-listbox .wj-listbox-item {
+    color: hsl(0, 0%, 80%);
+    background: hsl(0, 0%, 33%);
+}
+
+.wj-listbox .wj-listbox-item:hover {
+    background: hsl(0, 0%, 27%) !important;
+    cursor: pointer;
+}
+
+.wj-listbox-item.wj-state-selected {
+    background: hsl(0, 0%, 27%);
+}
+
+
+
+/* Wijmo Grouping Styles */
+.wj-cell.wj-group {
+    color: hsl(0, 0%, 80%);
+    background: hsl(0, 0%, 20%);
+}
+
+
+
+/* Wijmo FlexChart Styles */
+.wj-control.wj-flexchart {
+    background: hsl(0, 0%, 27%);
+}
+
+.wj-flexchart {
+    border: 1px solid hsl(0, 0%, 50%);
+}
+
+.wj-flexchart .wj-header .wj-title {
+    fill: hsl(0, 0%, 80%);
+}
+
+.wj-flexchart .wj-label, .wj-flexchart .wj-data-label {
+    fill: hsl(0, 0%, 80%);
+}
+
+.wj-axis-y .wj-title {
+    fill: hsl(0, 0%, 80%);
+}
+
+
+
+/* Wijmo Tooltip Styles */
+.wj-tooltip {
+    border: 1px solid hsl(0, 0%, 50%);
+    border-radius: 10px;
+    background: hsl(0, 0%, 27%);
+    color: hsl(0, 0%, 80%);
+}

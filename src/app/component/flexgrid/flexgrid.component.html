@@ -1,0 +1,154 @@
+<div class="container">
+    <div class="custom-panel">
+        <div class="row">
+            <div class="col-12">
+                <h1>FlexGrid</h1>
+                <p>FlexGrid is Wijmo's primary control; its both our most used and most developed component. The features provided with FlexGrid are based off of Microsoft Excel functionality, competitor features, and customer feature requests.</p>
+                <p>FlexGrid, like all of Wijmo's components, uses the CollectionView to manage the data provided to the datagrid. This allows devs extensive control over how the data is organized and presented by FlexGrid. It can also allow controls to be collected to one another by having them use the same CollectionView.</p>
+                <p>This page will outline some of FlexGrid's key features.</p>
+            </div>
+        </div>
+        <!-- Section Break -->
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h2>Core</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <p>This is a FlexGrid control implemented at a core level. We are setting the <i><b>itemsSource</b></i> property equal to our <i><b>collectionView</b></i> variable from the <i><b>flexgrid.component.ts</b></i> file.</p>
+                <p>We are also defining three columns: ID, Country, and Population. We do this inside of the column markup element by setting the <i><b>binding</b></i> and <i><b>header</b></i> properties. We also define the <i><b>itemsSource</b></i> property so that the rows fill out the width of the datagrid.</p>
+            </div>
+            <div class="col-8">
+                <!-- Grid Control -->
+                <wj-flex-grid [itemsSource]="collectionView">
+                    <wj-flex-grid-column [binding]="'id'" [header]="'ID'" [width]="'*'"></wj-flex-grid-column>
+                    <wj-flex-grid-column [binding]="'country'" [header]="'Country'" [width]="'*'"></wj-flex-grid-column>
+                    <wj-flex-grid-column [binding]="'population'" [header]="'Population'" [width]="'*'"></wj-flex-grid-column>
+                </wj-flex-grid>
+            </div>
+        </div>
+        <!-- Section Break -->
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h2>Filtering</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <!-- Grid Control -->
+                <wj-flex-grid [itemsSource]="collectionView">
+                    <wj-flex-grid-column [binding]="'id'" [header]="'ID'" [width]="'*'"></wj-flex-grid-column>
+                    <wj-flex-grid-column [binding]="'country'" [header]="'Country'" [width]="'*'"></wj-flex-grid-column>
+                    <wj-flex-grid-column [binding]="'population'" [header]="'Population'" [width]="'*'"></wj-flex-grid-column>
+                    <!-- Filter Control -->
+                    <wj-flex-grid-filter></wj-flex-grid-filter>
+                </wj-flex-grid>
+            </div>
+            <div class="col-4">
+                <p>This FlexGrid control implements FlexGrid's Filter extension. This is done by adding the <i><b>wj-flex-grid-filter</b></i> markup inside of FlexGrid's markup. You also need to import the <i><b>WjGridFilterModule</b></i> inside of the <i><b>app.module.ts</b></i> file.</p>
+                <p>I've also made a few changes to the styles of the filter, so that it better matches the style of the page. These changes can be found in the <i><b>styles.css</b></i> file.</p>
+            </div>
+        </div>
+        <!-- Section Break -->
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h2>Paging</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <p>FlexGrid also supports paging, through the use of the <i><b>CollectionViewNavigator</b></i> control. To use this control, you'll need to import the <i><b>WjInputModule</b></i> inside of the <i><b>app.module.ts</b></i> file.</p>
+                <p>In order to properly use the CollectionViewNavigator, we'll need to pass it a CollectionView that defines a value for the <i><b>pageSize</b></i> property. Inside of the <i><b>flexgrid.component.ts</b></i> file, I've created another CollectionView, <i><b>collectionViewPaging</b></i>, that defines the pageSize. We then pass this to the FlexGrid as its <i><b>itemsSource</b></i>, as well as the CollectionViewNavigator as its <i><b>cv</b></i>.</p>
+            </div>
+            <div class="col-8">
+                <!-- Grid Control -->
+                <wj-flex-grid [itemsSource]="collectionViewPaging">
+                    <wj-flex-grid-column [binding]="'id'" [header]="'ID'" [width]="'*'"></wj-flex-grid-column>
+                    <wj-flex-grid-column [binding]="'country'" [header]="'Country'" [width]="'*'"></wj-flex-grid-column>
+                    <wj-flex-grid-column [binding]="'population'" [header]="'Population'" [width]="'*'"></wj-flex-grid-column>
+                </wj-flex-grid>
+                <!-- Paging Control -->
+                <wj-collection-view-navigator headerFormat="Page {currentPage:n0} of {pageCount:n0}" [byPage]="true" [cv]="collectionViewPaging"></wj-collection-view-navigator>
+            </div>
+        </div>
+        <!-- Section Break -->
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h2>Custom Cells</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <!-- Grid Control -->
+                <wj-flex-grid [itemsSource]="collectionView">
+                    <wj-flex-grid-column [binding]="'id'" [header]="'ID'" [width]="'*'"></wj-flex-grid-column>
+                    <wj-flex-grid-column [binding]="'country'" [header]="'Country'" [width]="'*'">
+                        <!-- Custom Cell Template (Non-Edit Mode) -->
+                        <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+                           <img src="{{cell.item.flag}}" alt="Country Flag">
+                           {{cell.item.country}} 
+                        </ng-template>
+                        <!-- Custom Cell Template (Edit Mode) -->
+                        <ng-template wjFlexGridCellTemplate [cellType]="'CellEdit'" let-cell="cell">
+                            <wj-combo-box [itemsSource]="countries" class="cell-editor" [(selectedValue)]="cell.value" [isEditable]="false" [isRequired]="false" [placeholder]="'Select a Country'">
+                            </wj-combo-box>
+                        </ng-template>
+                    </wj-flex-grid-column>
+                    <wj-flex-grid-column [binding]="'population'" [header]="'Population'" [width]="'*'"></wj-flex-grid-column>
+                </wj-flex-grid>
+            </div>
+            <div class="col-4">
+                <p>One of the most powerful features of FlexGrid is the ability to implement custom content within cells. For this example, we'll include the country's associated flag next to its name, and a ComboBox in the cell to allow users to select the country from a list.</p>
+                <p>To do so, we'll need to use the <i><b>ng-template</b></i> markup tag, and tag it as a <i><b>wjFlexGridCellTemplate</b></i> template. From there, all we need to do is tell the cell, through markup, what we want to display, and it will implement it for each cell in the column.</p>
+            </div>
+        </div>
+        <!-- Section Break -->
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h2>Formatting</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <p>FlexGrid allows you to format date and number columns to define how the values in the column are displayed. There's several different formatting options, which you can find <a href="https://www.grapecity.com/wijmo/demos/Core/Globalization/Formatting/angular">here</a>.</p>
+                <p>To format the column, we need to set a value for the <i><b>format</b></i> property. For this sample, we're defining the <i><b>Date</b></i> column to display in the long date pattern, and defining the <i><b>Amount</b></i> column to display as a currency to the 2 decimal place.</p>
+            </div>
+            <div class="col-8">
+                <!-- Grid Control -->
+                <wj-flex-grid [itemsSource]="collectionViewFormatting">
+                    <wj-flex-grid-column [binding]="'id'" [header]="'ID'" [width]="'*'"></wj-flex-grid-column>
+                    <wj-flex-grid-column [binding]="'date'" [header]="'Date'" [width]="'*'" [format]="'D'"></wj-flex-grid-column>
+                    <wj-flex-grid-column [binding]="'amount'" [header]="'Amount'" [width]="'*'" [format]="'c2'"></wj-flex-grid-column>
+                </wj-flex-grid>
+            </div>
+        </div>
+        <!-- Section Break -->
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h2>Grouping</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <!-- Grid Control -->
+                <wj-flex-grid [itemsSource]="collectionViewGrouping" style="height: 222px">
+                    <wj-flex-grid-column [binding]="'id'" [header]="'ID'" [width]="'*'"></wj-flex-grid-column>
+                    <wj-flex-grid-column [binding]="'country'" [header]="'Country'" [width]="'*'" [visible]="false"></wj-flex-grid-column>
+                    <wj-flex-grid-column [binding]="'product'" [header]="'Product'" [width]="'*'"></wj-flex-grid-column>
+                    <wj-flex-grid-column [binding]="'sale'" [header]="'Sale'" [width]="'*'" [format]="'c2'"></wj-flex-grid-column>
+                </wj-flex-grid>
+            </div>
+            <div class="col-4">
+                <p>There will be times when you want to group large amounts of data together based on a common value; FlexGrid allows you to implement grouping based around a property of the objects that are being handled by the CollectionView.</p>
+                <p>The CollectionView's <i><b>groupDescription</b></i> property can be used to set the groups. It accepts an array of strings, where each string in the array is a property that you want to group the data by. The CollectionView also lets you create multiple groups.</p>
+            </div>
+        </div>
+    </div>
+</div>
