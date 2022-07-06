@@ -105,6 +105,7 @@ body {
 .wj-control .wj-input-group .wj-form-control {
     color: hsl(0, 0%, 80%);
     background: hsl(0, 0%, 33%);
+    width: 100% !important;
 }
 
 .wj-listbox .wj-listbox-item {
@@ -160,4 +161,12 @@ body {
     border-radius: 10px;
     background: hsl(0, 0%, 27%);
     color: hsl(0, 0%, 80%);
+}
+
+
+/* Wijmo MultiAutoComplete Styles */
+.wj-token {
+    border-radius: 10px !important;
+    background: hsl(0, 0%, 33%) !important;
+    color: hsl(0, 0%, 80%) !important;
 }

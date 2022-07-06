@@ -15,12 +15,21 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-4">
-                <p>Description</p>
+            <div class="col-6">
+                <p>The AutoComplete control functions as both a dropdown and a search bar. Users can expand the dropdown via the arrow button, but they can also type into the text area and be shown a list of terms that match what they've entered.</p>
             </div>
-            <div class="col-8">
+            <div class="col-6">
                 <!-- Input Control -->
-                Control
+                <!-- Standard AutoComplete -->
+                <label for="standardAuto" class="control-label">Standard:</label>
+                <wj-auto-complete id="standardAuto" [itemsSource]="countries"></wj-auto-complete>
+                <br><br>
+                <!-- Filter AutoComplete -->
+                <label for="filterAuto" class="control-label">Filter:</label>
+                <wj-auto-complete #filterAutoComplete id="filterAuto" [itemsSource]="countries"></wj-auto-complete>
+                <br>
+                <label for="filterBox" class="control-label">Apply Filter</label>
+                <input type="checkbox" name="filterBox" id="filterBox" (change)="filterCheckboxChange($event)">
             </div>
         </div>
         <!-- Section Break -->
@@ -31,44 +40,18 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-4">
-                <p>Description</p>
-            </div>
-            <div class="col-8">
+            <div class="col-6">
                 <!-- Input Control -->
-                Control
+                <!-- Standard AutoComplete -->
+                <label for="standardCombo" class="control-label">Standard:</label>
+                <wj-combo-box id="standardCombo" [itemsSource]="countries"></wj-combo-box>
+                <br><br>
+                <!-- Filter AutoComplete -->
+                <label for="objectCombo" class="control-label">Object as Data:</label>
+                <wj-combo-box id="objectCombo" [itemsSource]="expandedCountries" [displayMemberPath]="'country'"></wj-combo-box>
             </div>
-        </div>
-        <!-- Section Break -->
-        <hr>
-        <div class="row">
-            <div class="col-12">
-                <h2>InputDate</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                <p>Description</p>
-            </div>
-            <div class="col-8">
-                <!-- Input Control -->
-                Control
-            </div>
-        </div>
-        <!-- Section Break -->
-        <hr>
-        <div class="row">
-            <div class="col-12">
-                <h2>InputNumber</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                <p>Description</p>
-            </div>
-            <div class="col-8">
-                <!-- Input Control -->
-                Control
+            <div class="col-6">
+                <p>The ComboBox control serves as Wijmo's basic dropdown control. It allows users to select an item from a dropdown panel, as well as type inside of the textarea and have the control filter to the value that matches what the user is typing. This control is similar to the AutoComplete control.</p>
             </div>
         </div>
         <!-- Section Break -->
@@ -84,7 +67,7 @@
             </div>
             <div class="col-8">
                 <!-- Input Control -->
-                Control
+                <wj-multi-auto-complete [placeholder]="'Select a Country'" [itemsSource]="countries" [selectedIndex]="-1"></wj-multi-auto-complete>
             </div>
         </div>
         <!-- Section Break -->
